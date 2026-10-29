@@ -1,0 +1,741 @@
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.58 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.16 ms) select count(*) as aggregate from "bukus"  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.23 ms) select * from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.14 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.10 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.07 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (0.07 ms) select * from "kategoris" where "kategoris"."id" = ? limit 1  
+[2026-10-09 09:28:02] local.INFO: [SQL AUDIT] (8.91 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (1.14 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (0.48 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (10.44 ms) create table "migrations" ("id" integer primary key autoincrement not null, "migration" varchar not null, "batch" integer not null)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (0.57 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (0.15 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (0.10 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (0.10 ms) select max("batch") as aggregate from "migrations"  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (2.80 ms) create table "users" ("id" integer primary key autoincrement not null, "name" varchar not null, "email" varchar not null, "email_verified_at" datetime, "password" varchar not null, "remember_token" varchar, "created_at" datetime, "updated_at" datetime)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (2.58 ms) create unique index "users_email_unique" on "users" ("email")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (3.06 ms) create table "password_reset_tokens" ("email" varchar not null, "token" varchar not null, "created_at" datetime, primary key ("email"))  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (5.51 ms) create table "sessions" ("id" varchar not null, "user_id" integer, "ip_address" varchar, "user_agent" text, "payload" text not null, "last_activity" integer not null, primary key ("id"))  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (3.90 ms) create index "sessions_user_id_index" on "sessions" ("user_id")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (2.81 ms) create index "sessions_last_activity_index" on "sessions" ("last_activity")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (4.86 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (4.89 ms) create table "cache" ("key" varchar not null, "value" text not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (7.11 ms) create table "cache_locks" ("key" varchar not null, "owner" varchar not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (3.55 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (5.88 ms) create table "jobs" ("id" integer primary key autoincrement not null, "queue" varchar not null, "payload" text not null, "attempts" integer not null, "reserved_at" integer, "available_at" integer not null, "created_at" integer not null)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (3.42 ms) create index "jobs_queue_index" on "jobs" ("queue")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (4.57 ms) create table "job_batches" ("id" varchar not null, "name" varchar not null, "total_jobs" integer not null, "pending_jobs" integer not null, "failed_jobs" integer not null, "failed_job_ids" text not null, "options" text, "cancelled_at" integer, "created_at" integer not null, "finished_at" integer, primary key ("id"))  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (4.33 ms) create table "failed_jobs" ("id" integer primary key autoincrement not null, "uuid" varchar not null, "connection" text not null, "queue" text not null, "payload" text not null, "exception" text not null, "failed_at" datetime not null default CURRENT_TIMESTAMP)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (4.71 ms) create unique index "failed_jobs_uuid_unique" on "failed_jobs" ("uuid")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (4.73 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (5.14 ms) create table "kategoris" ("id" integer primary key autoincrement not null, "kode_kategori" varchar not null, "nama_kategori" varchar not null, "created_at" datetime, "updated_at" datetime)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (5.36 ms) create unique index "kategoris_kode_kategori_unique" on "kategoris" ("kode_kategori")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (3.86 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (5.15 ms) create table "bukus" ("id" integer primary key autoincrement not null, "isbn" varchar not null, "judul" varchar not null, "penulis" varchar not null, "penerbit" varchar not null, "tahun_terbit" integer not null, "kategori_id" integer not null, "stok" integer not null default '0', "sinopsis" text, "created_at" datetime, "updated_at" datetime, foreign key("kategori_id") references "kategoris"("id") on delete cascade)  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (6.44 ms) create unique index "bukus_isbn_unique" on "bukus" ("isbn")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (6.08 ms) create index "bukus_judul_index" on "bukus" ("judul")  
+[2026-10-09 09:32:00] local.INFO: [SQL AUDIT] (5.00 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-09 09:32:24] local.INFO: [SQL AUDIT] (0.92 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-09 09:32:24] local.INFO: [SQL AUDIT] (0.21 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-09 09:32:24] local.INFO: [SQL AUDIT] (9.71 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-09 09:32:24] local.INFO: [SQL AUDIT] (0.67 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-09 09:32:24] local.INFO: [SQL AUDIT] (0.19 ms) select count(*) as aggregate from "bukus"  
+[2026-10-09 09:32:24] local.INFO: [SQL AUDIT] (9.34 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (2.25 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.19 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (2.26 ms) create table "migrations" ("id" integer primary key autoincrement not null, "migration" varchar not null, "batch" integer not null)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.15 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.09 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.07 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.10 ms) select max("batch") as aggregate from "migrations"  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.99 ms) create table "users" ("id" integer primary key autoincrement not null, "name" varchar not null, "email" varchar not null, "email_verified_at" datetime, "password" varchar not null, "remember_token" varchar, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.75 ms) create unique index "users_email_unique" on "users" ("email")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.69 ms) create table "password_reset_tokens" ("email" varchar not null, "token" varchar not null, "created_at" datetime, primary key ("email"))  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.10 ms) create table "sessions" ("id" varchar not null, "user_id" integer, "ip_address" varchar, "user_agent" text, "payload" text not null, "last_activity" integer not null, primary key ("id"))  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.78 ms) create index "sessions_user_id_index" on "sessions" ("user_id")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.95 ms) create index "sessions_last_activity_index" on "sessions" ("last_activity")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.81 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.34 ms) create table "cache" ("key" varchar not null, "value" text not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.71 ms) create table "cache_locks" ("key" varchar not null, "owner" varchar not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.23 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.18 ms) create table "jobs" ("id" integer primary key autoincrement not null, "queue" varchar not null, "payload" text not null, "attempts" integer not null, "reserved_at" integer, "available_at" integer not null, "created_at" integer not null)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.71 ms) create index "jobs_queue_index" on "jobs" ("queue")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.92 ms) create table "job_batches" ("id" varchar not null, "name" varchar not null, "total_jobs" integer not null, "pending_jobs" integer not null, "failed_jobs" integer not null, "failed_job_ids" text not null, "options" text, "cancelled_at" integer, "created_at" integer not null, "finished_at" integer, primary key ("id"))  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.15 ms) create table "failed_jobs" ("id" integer primary key autoincrement not null, "uuid" varchar not null, "connection" text not null, "queue" text not null, "payload" text not null, "exception" text not null, "failed_at" datetime not null default CURRENT_TIMESTAMP)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (2.04 ms) create unique index "failed_jobs_uuid_unique" on "failed_jobs" ("uuid")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.28 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.99 ms) create table "kategoris" ("id" integer primary key autoincrement not null, "kode_kategori" varchar not null, "nama_kategori" varchar not null, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.90 ms) create unique index "kategoris_kode_kategori_unique" on "kategoris" ("kode_kategori")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (0.66 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.08 ms) create table "bukus" ("id" integer primary key autoincrement not null, "isbn" varchar not null, "judul" varchar not null, "penulis" varchar not null, "penerbit" varchar not null, "tahun_terbit" integer not null, "kategori_id" integer not null, "stok" integer not null default '0', "sinopsis" text, "created_at" datetime, "updated_at" datetime, foreign key("kategori_id") references "kategoris"("id") on delete cascade)  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.27 ms) create unique index "bukus_isbn_unique" on "bukus" ("isbn")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.87 ms) create index "bukus_judul_index" on "bukus" ("judul")  
+[2026-10-10 01:05:43] local.INFO: [SQL AUDIT] (1.86 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:06:39] local.INFO: [SQL AUDIT] (1.60 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 01:06:39] local.INFO: [SQL AUDIT] (0.25 ms) select count(*) as aggregate from "bukus"  
+[2026-10-10 01:06:39] local.INFO: [SQL AUDIT] (0.20 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 01:06:39] local.INFO: [SQL AUDIT] (2.29 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:06:54] local.INFO: [SQL AUDIT] (0.59 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 01:06:54] local.INFO: [SQL AUDIT] (0.23 ms) select count(*) as aggregate from "kategoris"  
+[2026-10-10 01:06:54] local.INFO: [SQL AUDIT] (3.54 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.47 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.18 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (3.06 ms) create table "migrations" ("id" integer primary key autoincrement not null, "migration" varchar not null, "batch" integer not null)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.20 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.12 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.06 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.07 ms) select max("batch") as aggregate from "migrations"  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.82 ms) create table "users" ("id" integer primary key autoincrement not null, "name" varchar not null, "email" varchar not null, "email_verified_at" datetime, "password" varchar not null, "remember_token" varchar, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (2.12 ms) create unique index "users_email_unique" on "users" ("email")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (2.11 ms) create table "password_reset_tokens" ("email" varchar not null, "token" varchar not null, "created_at" datetime, primary key ("email"))  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.36 ms) create table "sessions" ("id" varchar not null, "user_id" integer, "ip_address" varchar, "user_agent" text, "payload" text not null, "last_activity" integer not null, primary key ("id"))  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.06 ms) create index "sessions_user_id_index" on "sessions" ("user_id")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.84 ms) create index "sessions_last_activity_index" on "sessions" ("last_activity")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.83 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (3.05 ms) create table "cache" ("key" varchar not null, "value" text not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (3.46 ms) create table "cache_locks" ("key" varchar not null, "owner" varchar not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (2.61 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.89 ms) create table "jobs" ("id" integer primary key autoincrement not null, "queue" varchar not null, "payload" text not null, "attempts" integer not null, "reserved_at" integer, "available_at" integer not null, "created_at" integer not null)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (2.00 ms) create index "jobs_queue_index" on "jobs" ("queue")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.67 ms) create table "job_batches" ("id" varchar not null, "name" varchar not null, "total_jobs" integer not null, "pending_jobs" integer not null, "failed_jobs" integer not null, "failed_job_ids" text not null, "options" text, "cancelled_at" integer, "created_at" integer not null, "finished_at" integer, primary key ("id"))  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (2.48 ms) create table "failed_jobs" ("id" integer primary key autoincrement not null, "uuid" varchar not null, "connection" text not null, "queue" text not null, "payload" text not null, "exception" text not null, "failed_at" datetime not null default CURRENT_TIMESTAMP)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.50 ms) create unique index "failed_jobs_uuid_unique" on "failed_jobs" ("uuid")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.20 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.60 ms) create table "kategoris" ("id" integer primary key autoincrement not null, "kode_kategori" varchar not null, "nama_kategori" varchar not null, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.32 ms) create unique index "kategoris_kode_kategori_unique" on "kategoris" ("kode_kategori")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.61 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.74 ms) create table "bukus" ("id" integer primary key autoincrement not null, "isbn" varchar not null, "judul" varchar not null, "penulis" varchar not null, "penerbit" varchar not null, "tahun_terbit" integer not null, "kategori_id" integer not null, "stok" integer not null default '0', "sinopsis" text, "created_at" datetime, "updated_at" datetime, foreign key("kategori_id") references "kategoris"("id") on delete cascade)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.97 ms) create unique index "bukus_isbn_unique" on "bukus" ("isbn")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.75 ms) create index "bukus_judul_index" on "bukus" ("judul")  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.34 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.13 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.12 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.13 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.27 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.09 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.03 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.13 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.96 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.07 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.20 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.14 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.78 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.12 ms) select * from "kategoris"  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.20 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.69 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.68 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.78 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.62 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.59 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.66 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.09 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (1.07 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.78 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.72 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.61 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.66 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.79 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.63 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.62 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.62 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.66 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.59 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.62 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.75 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.60 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.67 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.84 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:22] local.INFO: [SQL AUDIT] (0.81 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:39] local.INFO: [SQL AUDIT] (1.50 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 01:07:39] local.INFO: [SQL AUDIT] (0.26 ms) select count(*) as aggregate from "bukus"  
+[2026-10-10 01:07:39] local.INFO: [SQL AUDIT] (0.45 ms) select * from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-10 01:07:39] local.INFO: [SQL AUDIT] (0.28 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5, 6)  
+[2026-10-10 01:07:39] local.INFO: [SQL AUDIT] (0.32 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 01:07:39] local.INFO: [SQL AUDIT] (2.70 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-10 01:07:42] local.INFO: [SQL AUDIT] (1.02 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 01:07:42] local.INFO: [SQL AUDIT] (0.21 ms) select count(*) as aggregate from "kategoris"  
+[2026-10-10 01:07:42] local.INFO: [SQL AUDIT] (0.26 ms) select "kategoris".*, (select count(*) from "bukus" where "kategoris"."id" = "bukus"."kategori_id") as "bukus_count" from "kategoris" order by "created_at" desc limit 10 offset 0  
+[2026-10-10 01:07:42] local.INFO: [SQL AUDIT] (3.82 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-10 02:06:36] local.INFO: [SQL AUDIT] (39.40 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 02:06:37] local.INFO: [SQL AUDIT] (0.48 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 02:06:37] local.INFO: [SQL AUDIT] (3.92 ms) create table "migrations" ("id" integer primary key autoincrement not null, "migration" varchar not null, "batch" integer not null)  
+[2026-10-10 02:06:37] local.INFO: [SQL AUDIT] (0.39 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (0.25 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (0.16 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (0.27 ms) select max("batch") as aggregate from "migrations"  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (2.37 ms) create table "users" ("id" integer primary key autoincrement not null, "name" varchar not null, "email" varchar not null, "email_verified_at" datetime, "password" varchar not null, "remember_token" varchar, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (2.19 ms) create unique index "users_email_unique" on "users" ("email")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.75 ms) create table "password_reset_tokens" ("email" varchar not null, "token" varchar not null, "created_at" datetime, primary key ("email"))  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.24 ms) create table "sessions" ("id" varchar not null, "user_id" integer, "ip_address" varchar, "user_agent" text, "payload" text not null, "last_activity" integer not null, primary key ("id"))  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (2.52 ms) create index "sessions_user_id_index" on "sessions" ("user_id")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.36 ms) create index "sessions_last_activity_index" on "sessions" ("last_activity")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.91 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.94 ms) create table "cache" ("key" varchar not null, "value" text not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (2.38 ms) create table "cache_locks" ("key" varchar not null, "owner" varchar not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (2.94 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (5.85 ms) create table "jobs" ("id" integer primary key autoincrement not null, "queue" varchar not null, "payload" text not null, "attempts" integer not null, "reserved_at" integer, "available_at" integer not null, "created_at" integer not null)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.83 ms) create index "jobs_queue_index" on "jobs" ("queue")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.16 ms) create table "job_batches" ("id" varchar not null, "name" varchar not null, "total_jobs" integer not null, "pending_jobs" integer not null, "failed_jobs" integer not null, "failed_job_ids" text not null, "options" text, "cancelled_at" integer, "created_at" integer not null, "finished_at" integer, primary key ("id"))  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (4.24 ms) create table "failed_jobs" ("id" integer primary key autoincrement not null, "uuid" varchar not null, "connection" text not null, "queue" text not null, "payload" text not null, "exception" text not null, "failed_at" datetime not null default CURRENT_TIMESTAMP)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.46 ms) create unique index "failed_jobs_uuid_unique" on "failed_jobs" ("uuid")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.76 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (5.10 ms) create table "kategoris" ("id" integer primary key autoincrement not null, "kode_kategori" varchar not null, "nama_kategori" varchar not null, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.36 ms) create unique index "kategoris_kode_kategori_unique" on "kategoris" ("kode_kategori")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (2.87 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.19 ms) create table "bukus" ("id" integer primary key autoincrement not null, "isbn" varchar not null, "judul" varchar not null, "penulis" varchar not null, "penerbit" varchar not null, "tahun_terbit" integer not null, "kategori_id" integer not null, "stok" integer not null default '0', "sinopsis" text, "created_at" datetime, "updated_at" datetime, foreign key("kategori_id") references "kategoris"("id") on delete cascade)  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.96 ms) create unique index "bukus_isbn_unique" on "bukus" ("isbn")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (3.89 ms) create index "bukus_judul_index" on "bukus" ("judul")  
+[2026-10-10 02:06:38] local.INFO: [SQL AUDIT] (4.71 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:07:00] local.INFO: [SQL AUDIT] (2.41 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 02:07:00] local.INFO: [SQL AUDIT] (0.47 ms) select count(*) as aggregate from "kategoris"  
+[2026-10-10 02:07:04] local.INFO: [SQL AUDIT] (0.27 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-10 02:07:04] local.INFO: [SQL AUDIT] (13.98 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:16] local.INFO: [SQL AUDIT] (0.63 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 02:08:16] local.INFO: [SQL AUDIT] (0.20 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.92 ms) create table "migrations" ("id" integer primary key autoincrement not null, "migration" varchar not null, "batch" integer not null)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.13 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.10 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.05 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.07 ms) select max("batch") as aggregate from "migrations"  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.30 ms) create table "users" ("id" integer primary key autoincrement not null, "name" varchar not null, "email" varchar not null, "email_verified_at" datetime, "password" varchar not null, "remember_token" varchar, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.97 ms) create unique index "users_email_unique" on "users" ("email")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.96 ms) create table "password_reset_tokens" ("email" varchar not null, "token" varchar not null, "created_at" datetime, primary key ("email"))  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.50 ms) create table "sessions" ("id" varchar not null, "user_id" integer, "ip_address" varchar, "user_agent" text, "payload" text not null, "last_activity" integer not null, primary key ("id"))  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.42 ms) create index "sessions_user_id_index" on "sessions" ("user_id")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.84 ms) create index "sessions_last_activity_index" on "sessions" ("last_activity")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.93 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.03 ms) create table "cache" ("key" varchar not null, "value" text not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.74 ms) create table "cache_locks" ("key" varchar not null, "owner" varchar not null, "expiration" integer not null, primary key ("key"))  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.41 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.77 ms) create table "jobs" ("id" integer primary key autoincrement not null, "queue" varchar not null, "payload" text not null, "attempts" integer not null, "reserved_at" integer, "available_at" integer not null, "created_at" integer not null)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.35 ms) create index "jobs_queue_index" on "jobs" ("queue")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.40 ms) create table "job_batches" ("id" varchar not null, "name" varchar not null, "total_jobs" integer not null, "pending_jobs" integer not null, "failed_jobs" integer not null, "failed_job_ids" text not null, "options" text, "cancelled_at" integer, "created_at" integer not null, "finished_at" integer, primary key ("id"))  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.07 ms) create table "failed_jobs" ("id" integer primary key autoincrement not null, "uuid" varchar not null, "connection" text not null, "queue" text not null, "payload" text not null, "exception" text not null, "failed_at" datetime not null default CURRENT_TIMESTAMP)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (2.14 ms) create unique index "failed_jobs_uuid_unique" on "failed_jobs" ("uuid")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.02 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.57 ms) create table "kategoris" ("id" integer primary key autoincrement not null, "kode_kategori" varchar not null, "nama_kategori" varchar not null, "created_at" datetime, "updated_at" datetime)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.10 ms) create unique index "kategoris_kode_kategori_unique" on "kategoris" ("kode_kategori")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.85 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.70 ms) create table "bukus" ("id" integer primary key autoincrement not null, "isbn" varchar not null, "judul" varchar not null, "penulis" varchar not null, "penerbit" varchar not null, "tahun_terbit" integer not null, "kategori_id" integer not null, "stok" integer not null default '0', "sinopsis" text, "created_at" datetime, "updated_at" datetime, foreign key("kategori_id") references "kategoris"("id") on delete cascade)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.68 ms) create unique index "bukus_isbn_unique" on "bukus" ("isbn")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.70 ms) create index "bukus_judul_index" on "bukus" ("judul")  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.82 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.11 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.61 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.12 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.30 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.16 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.27 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.27 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.06 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.03 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.11 ms) select * from "kategoris" where ("kode_kategori" = ?) limit 1  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.28 ms) insert into "kategoris" ("kode_kategori", "nama_kategori", "updated_at", "created_at") values (?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.23 ms) select * from "kategoris"  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (2.06 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.89 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.78 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.75 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.00 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.78 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.12 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.63 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.81 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.93 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.12 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.59 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.61 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.64 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.68 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.95 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.16 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.61 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.61 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.63 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.82 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (1.04 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.99 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.63 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-10 02:08:17] local.INFO: [SQL AUDIT] (0.78 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-13 01:02:48] local.INFO: [SQL AUDIT] (12.84 ms) select exists (select 1 from pragma_compile_options where compile_options = 'ENABLE_DBSTAT_VTAB') as enabled  
+[2026-10-13 01:02:48] local.INFO: [SQL AUDIT] (0.19 ms) select name from sqlite_master where type = 'table' and name not like 'sqlite_%' order by name  
+[2026-10-13 01:03:24] local.INFO: [SQL AUDIT] (0.51 ms) select exists (select 1 from pragma_compile_options where compile_options = 'ENABLE_DBSTAT_VTAB') as enabled  
+[2026-10-13 01:03:24] local.INFO: [SQL AUDIT] (0.09 ms) select name from sqlite_master where type = 'table' and name not like 'sqlite_%' order by name  
+[2026-10-13 01:03:24] local.INFO: [SQL AUDIT] (0.10 ms) select name, type, not "notnull" as "nullable", dflt_value as "default", pk as "primary", hidden as "extra" from pragma_table_xinfo('bukus') order by cid asc  
+[2026-10-13 01:03:24] local.INFO: [SQL AUDIT] (0.04 ms) select "sql" from sqlite_master where type = 'table' and name = 'bukus'  
+[2026-10-13 01:03:24] local.INFO: [SQL AUDIT] (0.19 ms) select 'primary' as name, group_concat(col) as columns, 1 as "unique", 1 as "primary" from (select name as col from pragma_table_info('bukus') where pk > 0 order by pk, cid) group by name union select name, group_concat(col) as columns, "unique", origin = 'pk' as "primary" from (select il.*, ii.name as col from pragma_index_list('bukus') il, pragma_index_info(il.name) ii order by il.seq, ii.seqno) group by name, "unique", "primary"  
+[2026-10-13 01:03:24] local.INFO: [SQL AUDIT] (0.08 ms) select group_concat("from") as columns, "table" as foreign_table, group_concat("to") as foreign_columns, on_update, on_delete from (select * from pragma_foreign_key_list('bukus') order by id desc, seq) group by id, "table", on_update, on_delete  
+[2026-10-13 01:30:16] local.INFO: [SQL AUDIT] (0.48 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-13 01:30:16] local.INFO: [SQL AUDIT] (0.07 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-13 01:30:16] local.INFO: [SQL AUDIT] (0.54 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-13 01:30:16] local.INFO: [SQL AUDIT] (0.14 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-13 01:30:16] local.INFO: [SQL AUDIT] (0.14 ms) select max("batch") as aggregate from "migrations"  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (3.34 ms) create table "peminjamans" ("id" integer primary key autoincrement not null, "kode_pinjam" varchar not null, "buku_id" integer not null, "nim_peminjam" varchar not null, "nama_peminjam" varchar not null, "tanggal_pinjam" date not null, "tanggal_jatuh_tempo" date not null, "tanggal_kembali" date, "status" varchar not null default 'dipinjam', "created_at" datetime, "updated_at" datetime, foreign key("buku_id") references "bukus"("id") on delete cascade)  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (0.79 ms) create unique index "peminjamans_kode_pinjam_unique" on "peminjamans" ("kode_pinjam")  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (1.29 ms) insert into "migrations" ("migration", "batch") values (?, ?)  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (0.50 ms) select exists (select 1 from pragma_compile_options where compile_options = 'ENABLE_DBSTAT_VTAB') as enabled  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (0.08 ms) select name from sqlite_master where type = 'table' and name not like 'sqlite_%' order by name  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (0.09 ms) select name, type, not "notnull" as "nullable", dflt_value as "default", pk as "primary", hidden as "extra" from pragma_table_xinfo('peminjamans') order by cid asc  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (0.04 ms) select "sql" from sqlite_master where type = 'table' and name = 'peminjamans'  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (0.17 ms) select 'primary' as name, group_concat(col) as columns, 1 as "unique", 1 as "primary" from (select name as col from pragma_table_info('peminjamans') where pk > 0 order by pk, cid) group by name union select name, group_concat(col) as columns, "unique", origin = 'pk' as "primary" from (select il.*, ii.name as col from pragma_index_list('peminjamans') il, pragma_index_info(il.name) ii order by il.seq, ii.seqno) group by name, "unique", "primary"  
+[2026-10-13 01:30:17] local.INFO: [SQL AUDIT] (0.08 ms) select group_concat("from") as columns, "table" as foreign_table, group_concat("to") as foreign_columns, on_update, on_delete from (select * from pragma_foreign_key_list('peminjamans') order by id desc, seq) group by id, "table", on_update, on_delete  
+[2026-10-13 02:21:50] local.INFO: [SQL AUDIT] (1.39 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:21:53] local.INFO: [SQL AUDIT] (0.28 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:21:53] local.INFO: [SQL AUDIT] (5.95 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-13 02:21:53] local.INFO: [SQL AUDIT] (0.94 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:21:54] local.INFO: [SQL AUDIT] (0.26 ms) select count(*) as aggregate from "bukus"  
+[2026-10-13 02:21:54] local.INFO: [SQL AUDIT] (0.41 ms) select * from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-13 02:21:54] local.INFO: [SQL AUDIT] (0.33 ms) select * from "kategoris" where "kategoris"."id" in (2, 3, 4, 5, 6)  
+[2026-10-13 02:21:58] local.INFO: [SQL AUDIT] (4.50 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:23:49] local.INFO: [SQL AUDIT] (0.64 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:23:49] local.INFO: [SQL AUDIT] (0.24 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-13 02:23:49] local.INFO: [SQL AUDIT] (0.34 ms) select * from "bukus" order by "judul" asc  
+[2026-10-13 02:23:49] local.INFO: [SQL AUDIT] (2.97 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:25:10] local.INFO: [SQL AUDIT] (0.94 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:25:10] local.INFO: [SQL AUDIT] (0.22 ms) select count(*) as aggregate from "bukus" where "id" = ?  
+[2026-10-13 02:25:11] local.INFO: [SQL AUDIT] (0.27 ms) select * from "bukus" where "id" = ? limit 1  
+[2026-10-13 02:25:11] local.INFO: [SQL AUDIT] (0.18 ms) select exists(select * from "peminjamans" where "buku_id" = ? and "nim_peminjam" = ? and "status" = ?) as "exists"  
+[2026-10-13 02:25:11] local.INFO: [SQL AUDIT] (1.05 ms) update "bukus" set "stok" = "stok" - 1, "updated_at" = ? where "id" = ?  
+[2026-10-13 02:25:11] local.INFO: [SQL AUDIT] (0.73 ms) insert into "peminjamans" ("kode_pinjam", "nim_peminjam", "nama_peminjam", "tanggal_pinjam", "tanggal_jatuh_tempo", "status", "buku_id", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-13 02:25:11] local.INFO: [SQL AUDIT] (1.75 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:25:12] local.INFO: [SQL AUDIT] (0.84 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:25:12] local.INFO: [SQL AUDIT] (0.20 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-13 02:25:12] local.INFO: [SQL AUDIT] (0.26 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-13 02:25:12] local.INFO: [SQL AUDIT] (0.18 ms) select * from "bukus" where "bukus"."id" in (2)  
+[2026-10-13 02:25:12] local.INFO: [SQL AUDIT] (0.54 ms) select * from "bukus" order by "judul" asc  
+[2026-10-13 02:25:12] local.INFO: [SQL AUDIT] (10.82 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.82 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.22 ms) select count(*) as aggregate from "bukus" where "id" = ?  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.22 ms) select * from "bukus" where "id" = ? limit 1  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (3.97 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.89 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.15 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.17 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.19 ms) select * from "bukus" where "bukus"."id" in (2)  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (0.29 ms) select * from "bukus" order by "judul" asc  
+[2026-10-13 02:25:43] local.INFO: [SQL AUDIT] (2.59 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:29:18] local.INFO: [SQL AUDIT] (0.88 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:29:18] local.INFO: [SQL AUDIT] (0.16 ms) select * from "peminjamans" where "id" = ? limit 1  
+[2026-10-13 02:29:18] local.INFO: [SQL AUDIT] (0.10 ms) select * from "bukus" where "id" = ? limit 1  
+[2026-10-13 02:29:18] local.INFO: [SQL AUDIT] (8.48 ms) update "peminjamans" set "tanggal_kembali" = ?, "status" = ?, "updated_at" = ? where "id" = ?  
+[2026-10-13 02:29:18] local.INFO: [SQL AUDIT] (0.24 ms) update "bukus" set "stok" = "stok" + 1, "updated_at" = ? where "id" = ?  
+[2026-10-13 02:29:18] local.INFO: [SQL AUDIT] (4.24 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:29:19] local.INFO: [SQL AUDIT] (0.98 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:29:19] local.INFO: [SQL AUDIT] (0.20 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-13 02:29:19] local.INFO: [SQL AUDIT] (0.29 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-13 02:29:19] local.INFO: [SQL AUDIT] (0.20 ms) select * from "bukus" where "bukus"."id" in (2)  
+[2026-10-13 02:29:19] local.INFO: [SQL AUDIT] (0.29 ms) select * from "bukus" order by "judul" asc  
+[2026-10-13 02:29:19] local.INFO: [SQL AUDIT] (4.99 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:43:46] local.INFO: [SQL AUDIT] (1.24 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:43:46] local.INFO: [SQL AUDIT] (3.73 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.68 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.18 ms) select count(*) as aggregate from "bukus"  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.43 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.21 ms) select * from "kategoris" where "kategoris"."id" in (2, 3, 4, 5, 6)  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.13 ms) select count(*) as aggregate from "bukus"  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.14 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.14 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.13 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (0.18 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-13 02:43:47] local.INFO: [SQL AUDIT] (4.10 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (1.07 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.69 ms) select count(*) as aggregate from "bukus" where ("judul" like ? or "penulis" like ? or "isbn" like ?)  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.27 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" where ("judul" like ? or "penulis" like ? or "isbn" like ?) order by "created_at" desc limit 10 offset 0  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.21 ms) select * from "kategoris" where "kategoris"."id" in (2, 3, 4, 5, 6)  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.12 ms) select count(*) as aggregate from "bukus"  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.13 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.12 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.12 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (0.16 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-13 02:46:59] local.INFO: [SQL AUDIT] (2.49 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.45 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.18 ms) select count(*) as aggregate from "bukus" where ("judul" like ? or "penulis" like ? or "isbn" like ?)  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.22 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" where ("judul" like ? or "penulis" like ? or "isbn" like ?) order by "created_at" desc limit 10 offset 0  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.12 ms) select * from "kategoris" where "kategoris"."id" in (2, 3, 4, 5, 6)  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.08 ms) select count(*) as aggregate from "bukus"  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.07 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.07 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.06 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (0.08 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-13 02:47:36] local.INFO: [SQL AUDIT] (1.60 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:38:20] local.INFO: [SQL AUDIT] (43.70 ms) select * from "users" where ("email" = ?) limit 1  
+[2026-10-16 20:38:21] local.INFO: [SQL AUDIT] (1.77 ms) insert into "users" ("email", "name", "password", "updated_at", "created_at") values (?, ?, ?, ?, ?)  
+[2026-10-16 20:50:49] local.INFO: [SQL AUDIT] (1.63 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:50:52] local.INFO: [SQL AUDIT] (0.47 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:50:52] local.INFO: [SQL AUDIT] (3.54 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (0.64 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (1.21 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (1.80 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (0.76 ms) select * from "kategoris" where "kategoris"."id" in (2, 3, 4, 5, 6)  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (0.15 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (0.13 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (0.15 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (0.13 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 20:50:53] local.INFO: [SQL AUDIT] (0.50 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-16 20:50:57] local.INFO: [SQL AUDIT] (2.65 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:50:57] local.INFO: [SQL AUDIT] (0.87 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:50:57] local.INFO: [SQL AUDIT] (11.42 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.98 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.24 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.31 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.22 ms) select * from "kategoris" where "kategoris"."id" in (2, 3, 4, 5, 6)  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.13 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.19 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.14 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.10 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (0.09 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-16 20:50:58] local.INFO: [SQL AUDIT] (2.05 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:51:25] local.INFO: [SQL AUDIT] (0.89 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:51:25] local.INFO: [SQL AUDIT] (1.97 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:51:25] local.INFO: [SQL AUDIT] (0.58 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:51:26] local.INFO: [SQL AUDIT] (3.01 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:52:27] local.INFO: [SQL AUDIT] (1.02 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:52:28] local.INFO: [SQL AUDIT] (0.22 ms) select * from "users" where "email" = ? limit 1  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (2.31 ms) delete from "sessions" where "id" = ?  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (2.27 ms) update "users" set "remember_token" = ? where "id" = ?  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (0.17 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (1.88 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (0.88 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (0.22 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (0.11 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (0.22 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (0.16 ms) select * from "bukus" where "bukus"."id" in (2)  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (0.19 ms) select * from "bukus" order by "judul" asc  
+[2026-10-16 20:52:29] local.INFO: [SQL AUDIT] (5.15 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:53:16] local.INFO: [SQL AUDIT] (1.12 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:53:16] local.INFO: [SQL AUDIT] (0.28 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 20:53:16] local.INFO: [SQL AUDIT] (0.18 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-16 20:53:16] local.INFO: [SQL AUDIT] (0.28 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 20:53:16] local.INFO: [SQL AUDIT] (0.21 ms) select * from "bukus" where "bukus"."id" in (2)  
+[2026-10-16 20:53:16] local.INFO: [SQL AUDIT] (0.36 ms) select * from "bukus" order by "judul" asc  
+[2026-10-16 20:53:16] local.INFO: [SQL AUDIT] (4.25 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (0.69 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (0.13 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (3.37 ms) update "users" set "remember_token" = ? where "id" = ?  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (2.03 ms) delete from "sessions" where "id" = ?  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (0.16 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (2.13 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (0.92 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:53:47] local.INFO: [SQL AUDIT] (11.28 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:54:14] local.INFO: [SQL AUDIT] (0.84 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:54:14] local.INFO: [SQL AUDIT] (0.24 ms) select * from "users" where "email" = ? limit 1  
+[2026-10-16 20:54:15] local.INFO: [SQL AUDIT] (3.20 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 20:54:15] local.INFO: [SQL AUDIT] (0.87 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 20:54:15] local.INFO: [SQL AUDIT] (2.01 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.45 ms) select * from "kategoris" limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.14 ms) select * from "bukus" where ("isbn" = ?) limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (1.51 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.08 ms) select * from "bukus" where ("isbn" = ?) limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (1.26 ms) insert into "bukus" ("isbn", "judul", "penulis", "penerbit", "tahun_terbit", "kategori_id", "stok", "sinopsis", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.12 ms) select * from "bukus" where "stok" > ? order by "id" asc limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.11 ms) select * from "bukus" where "stok" > ? order by "id" desc limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.09 ms) select * from "peminjamans" where ("kode_pinjam" = ?) limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.93 ms) insert into "peminjamans" ("kode_pinjam", "buku_id", "nim_peminjam", "nama_peminjam", "tanggal_pinjam", "tanggal_jatuh_tempo", "tanggal_kembali", "status", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.58 ms) update "bukus" set "stok" = "stok" - 1, "updated_at" = ? where "id" = ?  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.06 ms) select * from "peminjamans" where ("kode_pinjam" = ?) limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.98 ms) insert into "peminjamans" ("kode_pinjam", "buku_id", "nim_peminjam", "nama_peminjam", "tanggal_pinjam", "tanggal_jatuh_tempo", "tanggal_kembali", "status", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.93 ms) update "bukus" set "stok" = "stok" - 1, "updated_at" = ? where "id" = ?  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.10 ms) select * from "peminjamans" where ("kode_pinjam" = ?) limit 1  
+[2026-10-16 21:07:34] local.INFO: [SQL AUDIT] (0.79 ms) insert into "peminjamans" ("kode_pinjam", "buku_id", "nim_peminjam", "nama_peminjam", "tanggal_pinjam", "tanggal_jatuh_tempo", "tanggal_kembali", "status", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-16 21:11:00] local.INFO: [SQL AUDIT] (0.98 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:11:00] local.INFO: [SQL AUDIT] (11.40 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.39 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.13 ms) select * from "users" where "email" = ? limit 1  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (9.00 ms) delete from "sessions" where "id" = ?  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.10 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.91 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.32 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.07 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.12 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.07 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.04 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.05 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.07 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.05 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.05 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (0.09 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:16:12] local.INFO: [SQL AUDIT] (1.83 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:17:07] local.INFO: [SQL AUDIT] (0.44 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:17:07] local.INFO: [SQL AUDIT] (0.12 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:17:07] local.INFO: [SQL AUDIT] (0.08 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-16 21:17:07] local.INFO: [SQL AUDIT] (0.09 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:17:07] local.INFO: [SQL AUDIT] (0.09 ms) select * from "bukus" where "bukus"."id" in (1, 2, 25)  
+[2026-10-16 21:17:07] local.INFO: [SQL AUDIT] (0.23 ms) select * from "bukus" order by "judul" asc  
+[2026-10-16 21:17:07] local.INFO: [SQL AUDIT] (9.87 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.33 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.13 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.12 ms) select count(*) as aggregate from "bukus" where "id" = ?  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.11 ms) select * from "bukus" where "id" = ? limit 1  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.28 ms) select exists(select * from "peminjamans" where "buku_id" = ? and "nim_peminjam" = ? and "status" = ?) as "exists"  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.42 ms) update "bukus" set "stok" = "stok" - 1, "updated_at" = ? where "id" = ?  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.11 ms) insert into "peminjamans" ("kode_pinjam", "nim_peminjam", "nama_peminjam", "tanggal_pinjam", "tanggal_jatuh_tempo", "status", "buku_id", "updated_at", "created_at") values (?, ?, ?, ?, ?, ?, ?, ?, ?)  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (1.11 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.52 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.10 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.06 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.10 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.08 ms) select * from "bukus" where "bukus"."id" in (1, 2, 25, 27)  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (0.10 ms) select * from "bukus" order by "judul" asc  
+[2026-10-16 21:17:46] local.INFO: [SQL AUDIT] (1.18 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:19:15] local.INFO: [SQL AUDIT] (0.46 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:19:15] local.INFO: [SQL AUDIT] (0.12 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:19:15] local.INFO: [SQL AUDIT] (0.11 ms) select count(*) as aggregate from "bukus" where "id" = ?  
+[2026-10-16 21:19:15] local.INFO: [SQL AUDIT] (0.09 ms) select * from "bukus" where "id" = ? limit 1  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (9.87 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (0.48 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (0.27 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (0.08 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (0.11 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (0.11 ms) select * from "bukus" where "bukus"."id" in (1, 2, 25, 27)  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (0.14 ms) select * from "bukus" order by "judul" asc  
+[2026-10-16 21:19:16] local.INFO: [SQL AUDIT] (1.39 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.36 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.11 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.07 ms) select * from "peminjamans" where "id" = ? limit 1  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.04 ms) select * from "bukus" where "id" = ? limit 1  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.66 ms) update "peminjamans" set "tanggal_kembali" = ?, "status" = ?, "updated_at" = ? where "id" = ?  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.05 ms) update "bukus" set "stok" = "stok" + 1, "updated_at" = ? where "id" = ?  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (1.00 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.31 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.08 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.07 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.20 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.10 ms) select * from "bukus" where "bukus"."id" in (1, 2, 25, 27)  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (0.12 ms) select * from "bukus" order by "judul" asc  
+[2026-10-16 21:20:12] local.INFO: [SQL AUDIT] (1.39 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.38 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.09 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.14 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.07 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.05 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.05 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.04 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.03 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.05 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (0.10 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:21:26] local.INFO: [SQL AUDIT] (9.14 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:21:27] local.INFO: [SQL AUDIT] (0.55 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:21:27] local.INFO: [SQL AUDIT] (0.09 ms) select count(*) as aggregate from "kategoris"  
+[2026-10-16 21:21:27] local.INFO: [SQL AUDIT] (0.12 ms) select "kategoris".*, (select count(*) from "bukus" where "kategoris"."id" = "bukus"."kategori_id") as "bukus_count" from "kategoris" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:21:28] local.INFO: [SQL AUDIT] (0.14 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:21:28] local.INFO: [SQL AUDIT] (1.95 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:21:31] local.INFO: [SQL AUDIT] (0.33 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:21:31] local.INFO: [SQL AUDIT] (0.11 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:21:31] local.INFO: [SQL AUDIT] (0.06 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-16 21:21:31] local.INFO: [SQL AUDIT] (0.08 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:21:31] local.INFO: [SQL AUDIT] (0.08 ms) select * from "bukus" where "bukus"."id" in (1, 2, 25, 27)  
+[2026-10-16 21:21:31] local.INFO: [SQL AUDIT] (0.10 ms) select * from "bukus" order by "judul" asc  
+[2026-10-16 21:21:31] local.INFO: [SQL AUDIT] (8.60 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:21:33] local.INFO: [SQL AUDIT] (0.36 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:21:33] local.INFO: [SQL AUDIT] (0.09 ms) select count(*) as aggregate from "kategoris"  
+[2026-10-16 21:21:33] local.INFO: [SQL AUDIT] (0.11 ms) select "kategoris".*, (select count(*) from "bukus" where "kategoris"."id" = "bukus"."kategori_id") as "bukus_count" from "kategoris" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:21:33] local.INFO: [SQL AUDIT] (0.11 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:21:33] local.INFO: [SQL AUDIT] (1.35 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.39 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.08 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.14 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.11 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.06 ms) select count(*) as aggregate from "bukus"  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.05 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.05 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.04 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.05 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (0.11 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-16 21:21:45] local.INFO: [SQL AUDIT] (8.41 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 09:31:17] local.INFO: [SQL AUDIT] (3.38 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:31:17] local.INFO: [SQL AUDIT] (0.46 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:31:17] local.INFO: [SQL AUDIT] (2.47 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.64 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.28 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.44 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.19 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.27 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.57 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.11 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.08 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (0.11 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-17 09:31:18] local.INFO: [SQL AUDIT] (4.00 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 09:36:10] local.INFO: [SQL AUDIT] (0.83 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:36:10] local.INFO: [SQL AUDIT] (2.28 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 09:36:18] local.INFO: [SQL AUDIT] (0.78 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:36:18] local.INFO: [SQL AUDIT] (0.19 ms) select * from "users" where "email" = ? limit 1  
+[2026-10-17 09:36:19] local.INFO: [SQL AUDIT] (2.08 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 09:36:19] local.INFO: [SQL AUDIT] (0.88 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:36:19] local.INFO: [SQL AUDIT] (3.46 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 09:36:35] local.INFO: [SQL AUDIT] (0.62 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.34 ms) select * from "users" where "email" = ? limit 1  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (11.05 ms) delete from "sessions" where "id" = ?  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.27 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (2.34 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.89 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.20 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.37 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.19 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.13 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.15 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.10 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.14 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.11 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (0.24 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 09:36:36] local.INFO: [SQL AUDIT] (10.99 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (1.73 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.20 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.47 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.16 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.13 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.10 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.11 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.14 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.19 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (0.29 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 10:36:39] local.INFO: [SQL AUDIT] (3.20 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 10:36:41] local.INFO: [SQL AUDIT] (0.96 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 10:36:41] local.INFO: [SQL AUDIT] (0.22 ms) select count(*) as aggregate from "kategoris"  
+[2026-10-17 10:36:41] local.INFO: [SQL AUDIT] (0.42 ms) select "kategoris".*, (select count(*) from "bukus" where "kategoris"."id" = "bukus"."kategori_id") as "bukus_count" from "kategoris" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 10:36:41] local.INFO: [SQL AUDIT] (0.19 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 10:36:41] local.INFO: [SQL AUDIT] (2.85 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 10:36:42] local.INFO: [SQL AUDIT] (0.93 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 10:36:42] local.INFO: [SQL AUDIT] (0.24 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 10:36:42] local.INFO: [SQL AUDIT] (0.21 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-17 10:36:42] local.INFO: [SQL AUDIT] (0.34 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 10:36:42] local.INFO: [SQL AUDIT] (0.15 ms) select * from "bukus" where "bukus"."id" in (1, 2, 25, 27)  
+[2026-10-17 10:36:42] local.INFO: [SQL AUDIT] (0.31 ms) select * from "bukus" order by "judul" asc  
+[2026-10-17 10:36:42] local.INFO: [SQL AUDIT] (2.16 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 11:14:01] local.INFO: [SQL AUDIT] (2.37 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:01] local.INFO: [SQL AUDIT] (0.29 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.70 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.42 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.32 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.47 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.61 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.28 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.33 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (0.43 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 11:14:02] local.INFO: [SQL AUDIT] (10.77 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 11:14:10] local.INFO: [SQL AUDIT] (1.45 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:10] local.INFO: [SQL AUDIT] (0.29 ms) select count(*) as aggregate from "kategoris"  
+[2026-10-17 11:14:10] local.INFO: [SQL AUDIT] (0.64 ms) select "kategoris".*, (select count(*) from "bukus" where "kategoris"."id" = "bukus"."kategori_id") as "bukus_count" from "kategoris" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 11:14:10] local.INFO: [SQL AUDIT] (0.39 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 11:14:10] local.INFO: [SQL AUDIT] (4.43 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 11:14:16] local.INFO: [SQL AUDIT] (1.52 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:16] local.INFO: [SQL AUDIT] (0.37 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 11:14:16] local.INFO: [SQL AUDIT] (0.30 ms) select count(*) as aggregate from "peminjamans"  
+[2026-10-17 11:14:16] local.INFO: [SQL AUDIT] (0.33 ms) select * from "peminjamans" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 11:14:16] local.INFO: [SQL AUDIT] (0.55 ms) select * from "bukus" where "bukus"."id" in (1, 2, 25, 27)  
+[2026-10-17 11:14:16] local.INFO: [SQL AUDIT] (0.74 ms) select * from "bukus" order by "judul" asc  
+[2026-10-17 11:14:16] local.INFO: [SQL AUDIT] (15.53 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 11:14:34] local.INFO: [SQL AUDIT] (4.12 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:34] local.INFO: [SQL AUDIT] (0.38 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 11:14:34] local.INFO: [SQL AUDIT] (3.40 ms) update "users" set "remember_token" = ? where "id" = ?  
+[2026-10-17 11:14:34] local.INFO: [SQL AUDIT] (4.37 ms) delete from "sessions" where "id" = ?  
+[2026-10-17 11:14:34] local.INFO: [SQL AUDIT] (0.33 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:34] local.INFO: [SQL AUDIT] (3.38 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-17 11:14:35] local.INFO: [SQL AUDIT] (1.80 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:35] local.INFO: [SQL AUDIT] (4.58 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-17 11:14:55] local.INFO: [SQL AUDIT] (1.68 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:55] local.INFO: [SQL AUDIT] (0.39 ms) select * from "users" where "email" = ? limit 1  
+[2026-10-17 11:14:55] local.INFO: [SQL AUDIT] (4.96 ms) delete from "sessions" where "id" = ?  
+[2026-10-17 11:14:55] local.INFO: [SQL AUDIT] (0.34 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:55] local.INFO: [SQL AUDIT] (3.64 ms) insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (1.43 ms) select * from "sessions" where "id" = ? limit 1  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.34 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.69 ms) select "bukus".*, (select count(*) from "peminjamans" where "bukus"."id" = "peminjamans"."buku_id") as "peminjamans_count" from "bukus" order by "created_at" desc limit 10 offset 0  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.37 ms) select * from "kategoris" where "kategoris"."id" in (1, 2, 3, 4, 5)  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.25 ms) select count(*) as aggregate from "bukus"  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.22 ms) select sum("stok") as aggregate from "bukus"  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.21 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.20 ms) select count(*) as aggregate from "peminjamans" where "status" = ?  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.59 ms) select * from "kategoris" order by "nama_kategori" asc  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (0.36 ms) select * from "users" where "id" = ? limit 1  
+[2026-10-17 11:14:56] local.INFO: [SQL AUDIT] (4.16 ms) update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2026-10-29 16:23:56] local.INFO: [SQL AUDIT] (35.77 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-29 16:23:56] local.INFO: [SQL AUDIT] (0.15 ms) select exists (select 1 from sqlite_master where name = 'migrations' and type = 'table') as "exists"  
+[2026-10-29 16:23:56] local.INFO: [SQL AUDIT] (0.14 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-29 16:23:56] local.INFO: [SQL AUDIT] (0.06 ms) select "migration" from "migrations" order by "batch" asc, "migration" asc  
+[2026-10-29 16:23:56] local.INFO: [SQL AUDIT] (0.17 ms) select max("batch") as aggregate from "migrations"  
+[2026-10-29 16:23:59] local.ERROR: SQLSTATE[HY000]: General error: 1 table "bukus" already exists (Connection: sqlite, SQL: create table "bukus" ("id" integer primary key autoincrement not null, "ruangan" varchar not null, "kode_aset" varchar not null, "nama_perangkat" varchar not null, "kategori_id" integer not null, "stok" integer not null default '0', "sinopsis" text, "created_at" datetime, "updated_at" datetime, foreign key("kategori_id") references "kategoris"("id") on delete cascade)) {"exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 1 table \"bukus\" already exists (Connection: sqlite, SQL: create table \"bukus\" (\"id\" integer primary key autoincrement not null, \"ruangan\" varchar not null, \"kode_aset\" varchar not null, \"nama_perangkat\" varchar not null, \"kategori_id\" integer not null, \"stok\" integer not null default '0', \"sinopsis\" text, \"created_at\" datetime, \"updated_at\" datetime, foreign key(\"kategori_id\") references \"kategoris\"(\"id\") on delete cascade)) at D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php:825)
+[stacktrace]
+#0 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php(779): Illuminate/Database/Connection->runQueryCallback('create table \"b...', Array, Object(Closure))
+#1 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php(560): Illuminate/Database/Connection->run('create table \"b...', Array, Object(Closure))
+#2 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php(118): Illuminate/Database/Connection->statement('create table \"b...')
+#3 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(564): Illuminate/Database/Schema/Blueprint->build(Object(Illuminate/Database/SQLiteConnection), Object(Illuminate/Database/Schema/Grammars/SQLiteGrammar))
+#4 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(418): Illuminate/Database/Schema/Builder->build(Object(Illuminate/Database/Schema/Blueprint))
+#5 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(361): Illuminate/Database/Schema/Builder->create('bukus', Object(Closure))
+#6 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/database/migrations/2026_10_09_010220_create_laboratorium_table.php(14): Illuminate/Support/Facades/Facade::__callStatic('create', Array)
+#7 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(507): Illuminate/Database/Migrations/Migration@anonymous->up()
+#8 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(432): Illuminate/Database/Migrations/Migrator->runMethod(Object(Illuminate/Database/SQLiteConnection), Object(Illuminate/Database/Migrations/Migration@anonymous), 'up')
+#9 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(441): Illuminate/Database/Migrations/Migrator->{closure:Illuminate/Database/Migrations/Migrator::runMigration():428}()
+#10 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(244): Illuminate/Database/Migrations/Migrator->runMigration(Object(Illuminate/Database/Migrations/Migration@anonymous), 'up')
+#11 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Console/View/Components/Task.php(40): Illuminate/Database/Migrations/Migrator->{closure:Illuminate/Database/Migrations/Migrator::runUp():244}()
+#12 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(798): Illuminate/Console/View/Components/Task->render('2026_10_09_0102...', Object(Closure))
+#13 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(244): Illuminate/Database/Migrations/Migrator->write('Illuminate//Cons...', '2026_10_09_0102...', Object(Closure))
+#14 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(211): Illuminate/Database/Migrations/Migrator->runUp('D://SEMESTER 5//P...', 3, false)
+#15 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(138): Illuminate/Database/Migrations/Migrator->runPending(Array, Array)
+#16 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(117): Illuminate/Database/Migrations/Migrator->run(Array, Array)
+#17 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(658): Illuminate/Database/Console/Migrations/MigrateCommand->{closure:Illuminate/Database/Console/Migrations/MigrateCommand::runMigrations():110}()
+#18 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(110): Illuminate/Database/Migrations/Migrator->usingConnection(NULL, Object(Closure))
+#19 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(89): Illuminate/Database/Console/Migrations/MigrateCommand->runMigrations()
+#20 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate/Database/Console/Migrations/MigrateCommand->handle()
+#21 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::{closure:Illuminate/Container/BoundMethod::call():35}()
+#22 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(95): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#23 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#24 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/Container.php(696): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#25 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Console/Command.php(213): Illuminate/Container/Container->call(Array)
+#26 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Command/Command.php(341): Illuminate/Console/Command->execute(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#27 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Console/Command.php(182): Symfony/Component/Console/Command/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#28 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Application.php(1117): Illuminate/Console/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#29 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Application.php(356): Symfony/Component/Console/Application->doRunCommand(Object(Illuminate/Database/Console/Migrations/MigrateCommand), Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#30 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#31 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#32 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#33 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/artisan(13): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#34 {main}
+
+[previous exception] [object] (PDOException(code: HY000): SQLSTATE[HY000]: General error: 1 table \"bukus\" already exists at D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php:565)
+[stacktrace]
+#0 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php(565): PDO->prepare('create table \"b...')
+#1 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php(812): Illuminate/Database/Connection->{closure:Illuminate/Database/Connection::statement():560}('create table \"b...', Array)
+#2 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php(779): Illuminate/Database/Connection->runQueryCallback('create table \"b...', Array, Object(Closure))
+#3 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Connection.php(560): Illuminate/Database/Connection->run('create table \"b...', Array, Object(Closure))
+#4 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php(118): Illuminate/Database/Connection->statement('create table \"b...')
+#5 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(564): Illuminate/Database/Schema/Blueprint->build(Object(Illuminate/Database/SQLiteConnection), Object(Illuminate/Database/Schema/Grammars/SQLiteGrammar))
+#6 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(418): Illuminate/Database/Schema/Builder->build(Object(Illuminate/Database/Schema/Blueprint))
+#7 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(361): Illuminate/Database/Schema/Builder->create('bukus', Object(Closure))
+#8 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/database/migrations/2026_10_09_010220_create_laboratorium_table.php(14): Illuminate/Support/Facades/Facade::__callStatic('create', Array)
+#9 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(507): Illuminate/Database/Migrations/Migration@anonymous->up()
+#10 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(432): Illuminate/Database/Migrations/Migrator->runMethod(Object(Illuminate/Database/SQLiteConnection), Object(Illuminate/Database/Migrations/Migration@anonymous), 'up')
+#11 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(441): Illuminate/Database/Migrations/Migrator->{closure:Illuminate/Database/Migrations/Migrator::runMigration():428}()
+#12 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(244): Illuminate/Database/Migrations/Migrator->runMigration(Object(Illuminate/Database/Migrations/Migration@anonymous), 'up')
+#13 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Console/View/Components/Task.php(40): Illuminate/Database/Migrations/Migrator->{closure:Illuminate/Database/Migrations/Migrator::runUp():244}()
+#14 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(798): Illuminate/Console/View/Components/Task->render('2026_10_09_0102...', Object(Closure))
+#15 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(244): Illuminate/Database/Migrations/Migrator->write('Illuminate//Cons...', '2026_10_09_0102...', Object(Closure))
+#16 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(211): Illuminate/Database/Migrations/Migrator->runUp('D://SEMESTER 5//P...', 3, false)
+#17 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(138): Illuminate/Database/Migrations/Migrator->runPending(Array, Array)
+#18 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(117): Illuminate/Database/Migrations/Migrator->run(Array, Array)
+#19 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(658): Illuminate/Database/Console/Migrations/MigrateCommand->{closure:Illuminate/Database/Console/Migrations/MigrateCommand::runMigrations():110}()
+#20 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(110): Illuminate/Database/Migrations/Migrator->usingConnection(NULL, Object(Closure))
+#21 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(89): Illuminate/Database/Console/Migrations/MigrateCommand->runMigrations()
+#22 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate/Database/Console/Migrations/MigrateCommand->handle()
+#23 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::{closure:Illuminate/Container/BoundMethod::call():35}()
+#24 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(95): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#25 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#26 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Container/Container.php(696): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#27 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Console/Command.php(213): Illuminate/Container/Container->call(Array)
+#28 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Command/Command.php(341): Illuminate/Console/Command->execute(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#29 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Console/Command.php(182): Symfony/Component/Console/Command/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#30 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Application.php(1117): Illuminate/Console/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#31 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Application.php(356): Symfony/Component/Console/Application->doRunCommand(Object(Illuminate/Database/Console/Migrations/MigrateCommand), Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#32 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#33 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#34 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#35 D:/SEMESTER 5/PPW/UTS_PRAKTIKUM_PPW_12S24027_GrasiaSimanullang(1)/artisan(13): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#36 {main}
+"} 
